@@ -12,39 +12,60 @@ and open the template in the editor.
         <script src="http://code.jquery.com/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </head>
-    <body>
-        <h3 class="text-center">DSS for UT</h3>
+    <body style="background-color: #cccccc">
         <br>
         <div class="container-fluid controls">
             <div class="row-fluid controls-row">
                 <div class="tabbable">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab1" data-toggle="tab">Overview</a></li>
-                        <li><a href="#tab2" data-toggle="tab">Sensor X</a></li>
-                        <li><a href="#tab3" data-toggle="tab">Historico</a></li>
+                        <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
+                        <li><a href="#sensorx" data-toggle="tab">Sensor X</a></li>
+                        <li><a href="#historico" data-toggle="tab">Historico</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="tab1">
+                        <div class="tab-pane active" id="overview">
+                            <table class="table">
+                                <tr>
+                                    <th>Humedad (%): </th>
+                                    <td><input class="input-xlarge" id="humedad" type="text"></td>
+                                    <td>El valor ideal es:</td>
+                                </tr>
+                                <tr>
+                                    <th>Temperatura (C°): </th>
+                                    <td><input class="input-xlarge" id="temperatura" type="text"></td>
+                                    <td>El valor ideal es:</td>
+                                </tr>
+                                <tr>
+                                    <th>Humedad del suelo [1 - 5]: </th>
+                                    <td><input class="input-xlarge" id="humedadsuelo" type="text"></td>
+                                    <td>El valor ideal es:</td>
+                                </tr>
+                                <tr>
+                                    <th>Intensidad de luz [1 - 5]: </th>
+                                    <td><input class="input-xlarge" id="intensidadluz" type="text"></td>
+                                    <td>El valor ideal es:</td>
+                                </tr>
+                                <tr>
+                                    <th>Radiacion UV [1 - 10]: </th>
+                                    <td><input class="input-xlarge" id="radiacionuv" type="text"></td>
+                                    <td>El valor ideal es:</td>
+                                </tr>
+                                <tr>
+                                    <th>Overall current state</th>
+                                    <td colspan="2"><input class="text-center span12" id="overallce" type="text"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="sensorx">
                             <p>
-                                I'm in Section 1.I'm in Section 1.I'm in Section
-                                I'm in Section 1.I'm in Section 1.I'm in Section
-                                I'm in Section 1.I'm in Section 1.I'm in Section
-                                I'm in Section 1.I'm in Section 1.I'm in Section
-                                I'm in Section 1.I'm in Section 1.I'm in Section
-                                I'm in Section 1.I'm in Section 1.I'm in Section
-                                I'm in Section 1.I'm in Section 1.I'm in Section
+                                Howdy, I'm in Section 2.Howdy, I'm in Section 2.
+                                Howdy, I'm in Section 2.Howdy, I'm in Section 2.
+                                Howdy, I'm in Section 2.Howdy, I'm in Section 2.
+                                Howdy, I'm in Section 2.Howdy, I'm in Section 2.
+                                Howdy, I'm in Section 2.Howdy, I'm in Section 2.
                             </p>
                         </div>
-                        <div class="tab-pane" id="tab2">
-                            <p>
-                                Howdy, I'm in Section 2.Howdy, I'm in Section 2.
-                                Howdy, I'm in Section 2.Howdy, I'm in Section 2.
-                                Howdy, I'm in Section 2.Howdy, I'm in Section 2.
-                                Howdy, I'm in Section 2.Howdy, I'm in Section 2.
-                                Howdy, I'm in Section 2.Howdy, I'm in Section 2.
-                            </p>
-                        </div>
-                        <div class="tab-pane" id="tab3">
+                        <div class="tab-pane" id="historico">
                             <p>
                                 Historico.Historico.Historico.Historico.Historico.
                                 Historico.Historico.Historico.Historico.Historico.
