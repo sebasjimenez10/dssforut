@@ -34,6 +34,7 @@ public class DisconnectedSensorReader extends SensorReader implements Runnable{
             synchronized (this){
                 this.notifyObservers(data);
             }
+            
             sleepThread(5000);
         }
         

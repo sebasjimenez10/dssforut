@@ -25,16 +25,8 @@ public class SensorReaderObserver implements Observer {
             System.out.println("Data: " + s);
         }
         
-        System.out.println("");
-        
+        //Se llama a la parte de insercion de datos en la base de datos.
+        //"Hey data base tengo un dato nuevo, tome".
     }
     
 }
-
-//        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
-//        SimpleDateFormat hour = new SimpleDateFormat("HH:mm:ss");
-//            Date fullDate = new Date();
-//            String data = date.format(fullDate) + separator 
-//             + hour.format(fullDate) + separator
-//             + ( 1 + (int)Math.random() * (6 - 1) ) + separator
-//             + variables[( (int)Math.random() * (6 - 1) )] + separator;

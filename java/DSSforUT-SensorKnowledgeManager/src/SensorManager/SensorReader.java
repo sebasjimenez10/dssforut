@@ -10,7 +10,7 @@ import java.util.Observable;
  * Sensor data reader
  * @author Sebastian Jimenez V.
  */
-public abstract class SensorReader extends Observable {
+public abstract class SensorReader extends Observable implements Runnable {
     
     private String sensorData;
 
@@ -20,6 +20,11 @@ public abstract class SensorReader extends Observable {
 
     public void setSensorData(String sensorData) {
         this.sensorData = sensorData;
+    }
+
+    @Override
+    public void run() {
+        
     }
     
 }
