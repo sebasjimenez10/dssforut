@@ -4,6 +4,8 @@
  */
 package SensorManager;
 
+import SensorManager.SensorData.SensorDataManager;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -13,20 +15,23 @@ import java.util.Observer;
  */
 public class SensorReaderObserver implements Observer {
 
-    @Override
-    public void update(Observable o, Object arg) {
-        
-        System.out.println("Received data from event: " + arg.toString());
-        
-        String data = arg.toString();        
-        String separatedData [] = data.split("/");
-        
-        for( String s : separatedData ){
-            System.out.println("Data: " + s);
-        }
-        
-        //Se llama a la parte de insercion de datos en la base de datos.
-        //"Hey data base tengo un dato nuevo, tome".
+    private SensorDataManager sdm;
+    private static final String separator = "/";
+    
+    public SensorReaderObserver() {
+        sdm = new SensorDataManager();
     }
     
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("Received obj from event: " + arg.toString());
+        
+        SensorObtainedData data = (SensorObtainedData) arg;
+        
+        String separatedData [] = data.getData().split( separator );
+        String node = data.getNode();
+        Date time = data.getTime();
+        
+        sdm.sendFullPacketToDb(separatedData, node, time);
+    }
 }

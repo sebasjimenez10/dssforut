@@ -1,0 +1,8 @@
+CREATE TABLE sensor_data_registry(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	fecha DATE NOT NULL,
+	hora TIME NOT NULL,
+	dato VARCHAR(50) NOT NULL,
+	variable VARCHAR(50) NOT NULL,
+	nodo VARCHAR(50) NOT NULL
+)

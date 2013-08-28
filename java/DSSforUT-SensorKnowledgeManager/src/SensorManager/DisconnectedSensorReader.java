@@ -4,6 +4,7 @@
  */
 package SensorManager;
 
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,39 +14,38 @@ import java.util.logging.Logger;
  */
 public class DisconnectedSensorReader extends SensorReader implements Runnable{
 
-    private boolean threadRunning = true;
+    @Override
+    public void startReading() {
+        super.startReading();
+        this.run();
+    }
     
     @Override
     public void run() {
         
         String separator = "/";
         
-        while( threadRunning ){
+        while( this.isThreadRunning() ){
             
             String data = Math.random() + separator + Math.random()
                     + separator + Math.random() + separator + Math.random()
                     + separator + Math.random();
+            String node = "Nodo" + (int)( 1 + Math.random()*(3 - 1));
+            Date time = new Date();
             
-            System.out.println("\"Received data\" from sensor: " + data);
+            System.out.println("\"Received data\" from: " + node + ": " + data);
             
-            this.setSensorData(data);
+            SensorObtainedData sd = new SensorObtainedData(data, node, time);
+
             this.setChanged();
             
             synchronized (this){
-                this.notifyObservers(data);
+                this.notifyObservers(sd);
             }
             
             sleepThread(5000);
         }
         
-    }
-
-    public boolean isThreadRunning() {
-        return threadRunning;
-    }
-
-    public void setThreadRunning(boolean threadRunning) {
-        this.threadRunning = threadRunning;
     }
 
     private void sleepThread(int millis) {

@@ -20,6 +20,7 @@ public class Main {
         SensorReaderObserver sro = new SensorReaderObserver();
         SensorReader sensorReader;
         
+        //Poner falso cuando el xbee este connectado
         boolean disconnectedEnvironment = true;
         
         if( disconnectedEnvironment ){
@@ -31,7 +32,7 @@ public class Main {
         }
         
         sensorReader.addObserver(sro);
-        sensorReader.run();
-
+        sensorReader.startReading();
+        
     }
 }

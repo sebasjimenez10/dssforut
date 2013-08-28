@@ -18,10 +18,11 @@ import java.util.logging.Logger;
  *
  * @author Sebastian
  */
-public class ConnectedSensorReader extends SensorReader implements Runnable {
+public class ConnectedSensorReader extends SensorReader {
 
     @Override
-    public void run() {
+    public void startReading(){
+        super.startReading();
         
         //PropertyConfigurator.configure("log4j.properties");
         XBee xbee = new XBee();
@@ -50,7 +51,5 @@ public class ConnectedSensorReader extends SensorReader implements Runnable {
         }
         
     }
-    
-    
     
 }

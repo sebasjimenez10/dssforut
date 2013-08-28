@@ -10,21 +10,19 @@ import java.util.Observable;
  * Sensor data reader
  * @author Sebastian Jimenez V.
  */
-public abstract class SensorReader extends Observable implements Runnable {
+public abstract class SensorReader extends Observable {
+
+    private boolean threadRunning = true;
     
-    private String sensorData;
-
-    public String getSensorData() {
-        return sensorData;
-    }
-
-    public void setSensorData(String sensorData) {
-        this.sensorData = sensorData;
-    }
-
-    @Override
-    public void run() {
+    public void startReading(){
         
     }
-    
+
+    public boolean isThreadRunning() {
+        return threadRunning;
+    }
+
+    public void setThreadRunning(boolean threadRunning) {
+        this.threadRunning = threadRunning;
+    }
 }
