@@ -51,6 +51,6 @@ public class SensorObtainedData {
     
     @Override
     public String toString(){
-        return "{ data:" + this.data + " node: " + this.node + " }";
+        return "{data: " + this.data + " node: " + this.node + "}";
     }
 }

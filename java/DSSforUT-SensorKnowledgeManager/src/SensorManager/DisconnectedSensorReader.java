@@ -30,7 +30,7 @@ public class DisconnectedSensorReader extends SensorReader implements Runnable{
             String data = Math.random() + separator + Math.random()
                     + separator + Math.random() + separator + Math.random()
                     + separator + Math.random();
-            String node = "Nodo" + (int)( 1 + Math.random()*(3 - 1));
+            String node = "Fake Node" + (int)( 1 + (int)Math.random()*(3 - 1));
             Date time = new Date();
             
             System.out.println("\"Received data\" from: " + node + ": " + data);

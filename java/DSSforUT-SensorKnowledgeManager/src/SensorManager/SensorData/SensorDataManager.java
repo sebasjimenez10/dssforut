@@ -9,6 +9,7 @@ package SensorManager.SensorData;
 import Util.DatabaseInfoEnum;
 import Util.PropsReader;
 import static SensorManager.SensorData.Tables.*;
+import SensorManager.SensorObtainedData;
 import com.mysql.jdbc.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -33,11 +34,11 @@ public class SensorDataManager {
         "Intensidad de Luz",
         "Radiacion UV"};
     
-    public void sendFullPacketToDb(String[] separatedData, String sensor, java.util.Date time) {
+    public void sendFullPacketToDb(String[] separatedData, SensorObtainedData data) {
         
         Connection conn = getConnection();
 
-        pushDataPacket(conn, separatedData, time);
+        pushDataPacket(conn, separatedData, data.getTime(), data.getNode());
 
         closeConnection(conn);
     }
@@ -78,7 +79,7 @@ public class SensorDataManager {
         }
     }
 
-    private void pushDataPacket(Connection conn, String[] separatedData, java.util.Date time) throws DataAccessException {
+    private void pushDataPacket(Connection conn, String[] separatedData, java.util.Date time, String node) throws DataAccessException {
         
         DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
 
@@ -89,7 +90,7 @@ public class SensorDataManager {
                 .set(SENSOR_DATA_REGISTRY.HORA, new Time(time.getTime()))
                 .set(SENSOR_DATA_REGISTRY.DATO, separatedData[i])
                 .set(SENSOR_DATA_REGISTRY.VARIABLE, sensorOrder[i])
-                .set(SENSOR_DATA_REGISTRY.NODO, "Nodo1")
+                .set(SENSOR_DATA_REGISTRY.NODO, node)
                 .execute();
         }
     }

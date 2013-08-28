@@ -21,7 +21,7 @@ public class Main {
         SensorReader sensorReader;
         
         //Poner falso cuando el xbee este connectado
-        boolean disconnectedEnvironment = true;
+        boolean disconnectedEnvironment = false;
         
         if( disconnectedEnvironment ){
             

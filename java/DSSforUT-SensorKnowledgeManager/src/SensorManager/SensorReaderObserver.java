@@ -5,7 +5,6 @@
 package SensorManager;
 
 import SensorManager.SensorData.SensorDataManager;
-import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -29,9 +28,7 @@ public class SensorReaderObserver implements Observer {
         SensorObtainedData data = (SensorObtainedData) arg;
         
         String separatedData [] = data.getData().split( separator );
-        String node = data.getNode();
-        Date time = data.getTime();
         
-        sdm.sendFullPacketToDb(separatedData, node, time);
+        sdm.sendFullPacketToDb(separatedData, data);
     }
 }
