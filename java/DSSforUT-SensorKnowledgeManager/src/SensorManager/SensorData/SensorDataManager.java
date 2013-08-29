@@ -9,7 +9,6 @@ package SensorManager.SensorData;
 import Util.DatabaseInfoEnum;
 import Util.PropsReader;
 import static SensorManager.SensorData.Tables.*;
-import SensorManager.SensorObtainedData;
 import com.mysql.jdbc.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -27,17 +26,20 @@ import org.jooq.impl.DSL;
  */
 public class SensorDataManager {
     
-    private final String sensorOrder [] = {
+    private static final String sensorOrder [] = {
         "Humedad",
         "Temperatura",
         "Humedad del Suelo",
         "Intensidad de Luz",
         "Radiacion UV"};
     
-    public void sendFullPacketToDb(String[] separatedData, SensorObtainedData data) {
+    private static final String separator = "/";
+    
+    public void sendFullPacketToDb( SensorObtainedData data ) {
         
         Connection conn = getConnection();
 
+        String separatedData [] = data.getData().split( separator );
         pushDataPacket(conn, separatedData, data.getTime(), data.getNode());
 
         closeConnection(conn);
@@ -48,10 +50,10 @@ public class SensorDataManager {
 
         PropsReader propsReader = new PropsReader();
         
-        String userName = propsReader.readProp( DatabaseInfoEnum.db_user.name() );
-        String password = propsReader.readProp( DatabaseInfoEnum.db_password.name() );
-        String host = propsReader.readProp( DatabaseInfoEnum.db_host.name() );
-        String db_name = propsReader.readProp( DatabaseInfoEnum.db_name.name() );
+        String userName = propsReader.getConfigProperty(PropsReader.ConfigTarget.database, DatabaseInfoEnum.db_user.name() );
+        String password = propsReader.getConfigProperty(PropsReader.ConfigTarget.database, DatabaseInfoEnum.db_password.name() );
+        String host = propsReader.getConfigProperty(PropsReader.ConfigTarget.database, DatabaseInfoEnum.db_host.name() );
+        String db_name = propsReader.getConfigProperty(PropsReader.ConfigTarget.database, DatabaseInfoEnum.db_name.name() );
         
         String url = "jdbc:mysql://" + host + ":3306/" + db_name;
 

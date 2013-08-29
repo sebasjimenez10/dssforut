@@ -4,6 +4,8 @@
  */
 package Test.Util;
 
+import Util.DatabaseInfoEnum;
+import Util.EnvInfoEnum;
 import Util.PropsReader;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -16,54 +18,56 @@ public class PropsReaderTest {
     
     /*
      * Properties in property file must be like:
-     * 
      * db_something (user, password, name, host)
      */
     
      @Test
      public void getDbUser() {
-         //ARRANGE
          String expected = "dssforut_root";
-         String property = "db_user";
+         String property = DatabaseInfoEnum.db_user.name();
          
-         actAssert(expected, property);
+         actAssert(PropsReader.ConfigTarget.database, expected, property);
      }
      
      @Test
      public void getDbName() {
-         //ARRANGE
          String expected = "dssforut_db";
-         String property = "db_name";
+         String property = DatabaseInfoEnum.db_name.name();
          
-         actAssert(expected, property);
+         actAssert(PropsReader.ConfigTarget.database, expected, property);
      }
      
      @Test
      public void getDbPassword() {
-         //ARRANGE
          String expected = "dssforut_root";
-         String property = "db_password";
+         String property = DatabaseInfoEnum.db_password.name();
          
-         actAssert(expected, property);
+         actAssert(PropsReader.ConfigTarget.database, expected, property);
      }
      
      @Test
      public void getDbHost() {
-         //ARRANGE
          String expected = "ec2-23-21-211-172.compute-1.amazonaws.com";
-         String property = "db_host";
+         String property = DatabaseInfoEnum.db_host.name();
          
-         actAssert(expected, property);
+         actAssert(PropsReader.ConfigTarget.database, expected, property);
      }
      
-     public void actAssert( String expected, String property ){
+     @Test
+     public void getEnvValue(){
+         
+         String expected = "false";
+         String property = EnvInfoEnum.real_env.name();
+         
+         actAssert(PropsReader.ConfigTarget.environment, expected, property);
+     }
+     
+     public void actAssert( PropsReader.ConfigTarget value, String expected, String property ){
          
          //ARRANGE
          PropsReader reader = new PropsReader();
-         
          //ACT
-         String actual = reader.readProp( property );
-         
+         String actual = reader.getConfigProperty(value, property);
          //ASSERT
          Assert.assertEquals( expected, actual);
          

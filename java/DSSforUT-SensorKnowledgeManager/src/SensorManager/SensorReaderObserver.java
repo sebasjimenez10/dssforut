@@ -4,6 +4,7 @@
  */
 package SensorManager;
 
+import SensorManager.SensorData.SensorObtainedData;
 import SensorManager.SensorData.SensorDataManager;
 import java.util.Observable;
 import java.util.Observer;
@@ -15,7 +16,6 @@ import java.util.Observer;
 public class SensorReaderObserver implements Observer {
 
     private SensorDataManager sdm;
-    private static final String separator = "/";
     
     public SensorReaderObserver() {
         sdm = new SensorDataManager();
@@ -26,9 +26,9 @@ public class SensorReaderObserver implements Observer {
         System.out.println("Received obj from event: " + arg.toString());
         
         SensorObtainedData data = (SensorObtainedData) arg;
+        sdm.sendFullPacketToDb( data );
         
-        String separatedData [] = data.getData().split( separator );
-        
-        sdm.sendFullPacketToDb(separatedData, data);
+        //En algun punto se envia lo obtenido a la base de conocimiento para
+        //que esto evalue los sensado.
     }
 }

@@ -4,6 +4,7 @@
  */
 package SensorManager;
 
+import SensorManager.SensorData.SensorObtainedData;
 import com.rapplogic.xbee.api.ApiId;
 import com.rapplogic.xbee.api.PacketListener;
 import com.rapplogic.xbee.api.XBee;
