@@ -1,4 +1,4 @@
-package SensorManager;
+package com.dssforut.sensormanager;
 
 import java.util.Observable;
 

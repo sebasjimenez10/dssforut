@@ -1,11 +1,11 @@
-package Main;
+package com.dssforut.main;
 
-import SensorManager.ConnectedSensorReader;
-import SensorManager.DisconnectedSensorReader;
-import SensorManager.SensorReader;
-import SensorManager.SensorReaderObserver;
-import Util.EnvInfoEnum;
-import Util.PropsReader;
+import com.dssforut.sensormanager.ConnectedSensorReader;
+import com.dssforut.sensormanager.DisconnectedSensorReader;
+import com.dssforut.sensormanager.SensorReader;
+import com.dssforut.sensormanager.SensorReaderObserver;
+import com.dssforut.util.EnvInfoEnum;
+import com.dssforut.util.PropsReader;
 
 /**
  * This class initiates the program.

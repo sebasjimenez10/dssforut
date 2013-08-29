@@ -1,4 +1,4 @@
-package Util;
+package com.dssforut.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;

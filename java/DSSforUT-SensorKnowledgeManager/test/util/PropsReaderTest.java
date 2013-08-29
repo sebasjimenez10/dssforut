@@ -2,11 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Test.Util;
+package util;
 
-import Util.DatabaseInfoEnum;
-import Util.EnvInfoEnum;
-import Util.PropsReader;
+import com.dssforut.util.DatabaseInfoEnum;
+import com.dssforut.util.EnvInfoEnum;
+import com.dssforut.util.PropsReader;
 import junit.framework.Assert;
 import org.junit.Test;
 

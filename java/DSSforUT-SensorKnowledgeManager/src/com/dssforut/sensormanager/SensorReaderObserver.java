@@ -1,7 +1,7 @@
-package SensorManager;
+package com.dssforut.sensormanager;
 
-import SensorManager.SensorData.SensorObtainedData;
-import SensorManager.SensorData.SensorDataManager;
+import com.dssforut.sensormanager.sensordata.SensorObtainedData;
+import com.dssforut.sensormanager.sensordata.SensorDataManager;
 import java.util.Observable;
 import java.util.Observer;
 

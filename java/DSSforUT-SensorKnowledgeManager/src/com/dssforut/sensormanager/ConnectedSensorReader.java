@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package SensorManager;
+package com.dssforut.sensormanager;
 
-import SensorManager.SensorData.SensorObtainedData;
+import com.dssforut.sensormanager.sensordata.SensorObtainedData;
 import com.rapplogic.xbee.api.ApiId;
 import com.rapplogic.xbee.api.PacketListener;
 import com.rapplogic.xbee.api.XBee;

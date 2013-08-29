@@ -1,6 +1,6 @@
-package SensorManager;
+package com.dssforut.sensormanager;
 
-import SensorManager.SensorData.SensorObtainedData;
+import com.dssforut.sensormanager.sensordata.SensorObtainedData;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package SensorManager.SensorData;
+package com.dssforut.sensormanager.sensordata;
 
 
 
-import Util.DatabaseInfoEnum;
-import Util.PropsReader;
-import static SensorManager.SensorData.Tables.*;
+import com.dssforut.util.DatabaseInfoEnum;
+import com.dssforut.util.PropsReader;
+import static com.dssforut.sensormanager.sensordata.Tables.*;
 import com.mysql.jdbc.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;

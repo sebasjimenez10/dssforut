@@ -1,4 +1,4 @@
-package SensorManager.SensorData;
+package com.dssforut.sensormanager.sensordata;
 
 import java.util.Date;
 
