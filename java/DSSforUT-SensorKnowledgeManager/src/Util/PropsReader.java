@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Util;
 
 import java.io.FileInputStream;
@@ -56,8 +52,10 @@ public class PropsReader {
     /**
      * This method get a property from specific config file
      * @param targetConfig desired configuration (database, environment, etc.)
-     * @param property desired property in configuration file
-     * @return
+     * Options can be found in PropsReader.ConfigTarget enum
+     * @param property desired property in configuration file.
+     * Options can be found in DatabaseInfoEnum or EnvInfoEnum
+     * @return The value of the requested property
      * @throws Exception if the property does not exist
      */
     public String getConfigProperty(ConfigTarget targetConfig, String property){
@@ -95,5 +93,4 @@ public class PropsReader {
         
         return value;
     }
-
 }

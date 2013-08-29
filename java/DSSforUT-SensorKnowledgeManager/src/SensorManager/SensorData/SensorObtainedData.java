@@ -1,13 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package SensorManager.SensorData;
 
 import java.util.Date;
 
 /**
- *
+ * This class maps the needed data to be stored in the data base, including
+ * sensor data
  * @author Sebastian
  */
 public class SensorObtainedData {

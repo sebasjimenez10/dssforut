@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Main;
 
 import SensorManager.ConnectedSensorReader;
@@ -32,7 +28,8 @@ public class Main {
         
         //Get env configuration to know if we are connected or not to xbee
         String disconnectedEnvironment = new PropsReader().getConfigProperty(
-                PropsReader.ConfigTarget.environment, EnvInfoEnum.real_env.name());
+                PropsReader.ConfigTarget.environment,
+                EnvInfoEnum.real_env.name());
         
         if (disconnectedEnvironment.equals("false")) {
 
@@ -45,7 +42,7 @@ public class Main {
         //Observer is added to the list of observers
         sensorReader.addObserver(sro);
         //data reader starts to read data.
-        sensorReader.startReading();
+        sensorReader.startReader();
         
     }
 }

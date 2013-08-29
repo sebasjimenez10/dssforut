@@ -5,7 +5,8 @@
 package Util;
 
 /**
- *
+ * This enum contains the properties present
+ * in the environment configuratio file.
  * @author Sebastian
  */
 public enum EnvInfoEnum {

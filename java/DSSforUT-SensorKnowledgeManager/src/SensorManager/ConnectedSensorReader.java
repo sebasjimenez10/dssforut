@@ -31,8 +31,8 @@ public class ConnectedSensorReader extends SensorReader implements PacketListene
     }
     
     @Override
-    public void startReading(){
-        super.startReading();
+    public void startReader(){
+        super.startReader();
         
         //PropertyConfigurator.configure("log4j.properties");
         try {
@@ -42,11 +42,14 @@ public class ConnectedSensorReader extends SensorReader implements PacketListene
         } catch (XBeeException xe) {
             Logger.getLogger(ConnectedSensorReader.class.getName())
                     .log(Level.SEVERE, null, xe);
-        } finally {
-            //Se comenta o no dependiendo si se desea que permanezca escuchando
-            //xbee.close();
         }
         
+    }
+    
+    @Override
+    public void stopReader(){
+        super.stopReader();
+        xbee.close();
     }
     
     @Override

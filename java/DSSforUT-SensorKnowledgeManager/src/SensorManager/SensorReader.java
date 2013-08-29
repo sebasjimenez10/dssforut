@@ -1,28 +1,24 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package SensorManager;
 
 import java.util.Observable;
 
 /**
- * Sensor data reader
- * @author Sebastian Jimenez V.
+ * This class represents an abstract reader
+ * @author Sebastian
  */
 public abstract class SensorReader extends Observable {
 
-    private boolean threadRunning = true;
-    
-    public void startReading(){
+    /**
+     * This method is used to begin with data reading
+     */
+    public void startReader(){
         
     }
-
-    public boolean isThreadRunning() {
-        return threadRunning;
-    }
-
-    public void setThreadRunning(boolean threadRunning) {
-        this.threadRunning = threadRunning;
+    
+    /**
+     * This method is used to stop data reading
+     */
+    public void stopReader(){
+        
     }
 }
