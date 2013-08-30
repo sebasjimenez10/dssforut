@@ -17,30 +17,43 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * This class represents a connected sensor reader.
+ * This means a XBee Coordinator is available for reading.
  * @author Sebastian
  */
 public class ConnectedSensorReader extends SensorReader implements PacketListener {
 
+    //XBee object used to obtain data
     private XBee xbee;
 
+    //Constructor
     public ConnectedSensorReader() {
     
         xbee = new XBee();
-        
     }
     
+    /**
+     * Start reading data
+     */
     @Override
     public void startReader(){
         new Thread(this).start();
     }
     
+    /**
+     * Stop reading data
+     */
     @Override
     public void stopReader(){
         super.stopReader();
         xbee.close();
     }
     
+    /**
+     * Runs the thread. Sets this clase as a PacketListener. This means,
+     * every time a packet arrives this class is notified, with the respective
+     * obtained data
+     */
     @Override
     public void run(){
         //PropertyConfigurator.configure("log4j.properties");
@@ -54,6 +67,10 @@ public class ConnectedSensorReader extends SensorReader implements PacketListene
         }
     }
     
+    /**
+     * Method called in PacketListener interface to process XBeeResponse
+     * @param response 
+     */
     @Override
     public void processResponse(XBeeResponse response) {
 
@@ -69,6 +86,5 @@ public class ConnectedSensorReader extends SensorReader implements PacketListene
             this.setChanged();
             this.notifyObservers(sod);
         }
-    }
-    
+    }   
 }

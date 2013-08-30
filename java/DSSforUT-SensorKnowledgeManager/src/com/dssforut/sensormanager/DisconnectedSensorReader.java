@@ -1,6 +1,9 @@
 package com.dssforut.sensormanager;
 
 import com.dssforut.sensormanager.sensordata.SensorObtainedData;
+import com.dssforut.util.EnvInfoEnum;
+import com.dssforut.util.PropsReader;
+import com.dssforut.util.RandomRange;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,12 +19,18 @@ public class DisconnectedSensorReader extends SensorReader{
 
     //Indicates if the thread is running or not
     private boolean threadRunning = true;
-    
+    //Default frecuency
+    private int frecuency = 5000;
     /**
      * Used to start receiving data from sensors
      */
     @Override
     public void startReader(){
+        //Read frecuency from env properties
+        frecuency = Integer.parseInt( new PropsReader().getConfigProperty(
+                PropsReader.ConfigTarget.environment,
+                EnvInfoEnum.disconnected_env_frecuency.name()) );
+        //Start reading thread
         new Thread(this).start();
     }
     
@@ -50,7 +59,7 @@ public class DisconnectedSensorReader extends SensorReader{
                     + separator + Math.random() + separator + Math.random()
                     + separator + Math.random();
             //Fake sender node
-            String node = "Fake Node" + (int)( 1 + (int)Math.random()*(3 - 1));
+            String node = "Fake Node" + RandomRange.generateRandomRange(1, 3);
             //Current time
             Date time = new Date();
             //Printing data and node
@@ -62,8 +71,7 @@ public class DisconnectedSensorReader extends SensorReader{
             //notifying all observers with packed data object
             this.notifyObservers(sd);
             //Sleeping thread
-            //FIXME time must be variable
-            sleepThread(5000);
+            sleepThread( frecuency );
         }
     }
 

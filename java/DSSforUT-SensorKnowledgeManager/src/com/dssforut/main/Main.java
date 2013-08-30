@@ -32,10 +32,10 @@ public class Main {
                 EnvInfoEnum.real_env.name());
         
         if (disconnectedEnvironment.equals("false")) {
-
+            
             sensorReader = new DisconnectedSensorReader();
         } else {
-
+            
             sensorReader = new ConnectedSensorReader();
         }
         
