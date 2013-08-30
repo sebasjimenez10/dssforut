@@ -41,8 +41,10 @@ public class Main {
         
         //Observer is added to the list of observers
         sensorReader.addObserver(sro);
-        //data reader starts to read data.
+        //Data reader starts to read data.
         sensorReader.startReader();
         
+        //Sensor thread starts reading. This space can be used for forward
+        //activities in the process
     }
 }

@@ -18,12 +18,28 @@ public class DisconnectedSensorReader extends SensorReader{
     private boolean threadRunning = true;
     
     /**
+     * Used to start receiving data from sensors
+     */
+    @Override
+    public void startReader(){
+        new Thread(this).start();
+    }
+    
+    /**
+     * Used to stop reader by chaging threadRunning value
+     */
+    @Override
+    public void stopReader(){
+        super.stopReader();
+        threadRunning = false;
+    }
+    
+    /**
      * Begin to simulate data. In this scenario the data are simulated
      * via random numbers.
      */
     @Override
-    public void startReader() {
-        super.startReader();
+    public void run() {
         //Separator used to separate data according to the definition.
         String separator = "/";
         
@@ -49,15 +65,6 @@ public class DisconnectedSensorReader extends SensorReader{
             //FIXME time must be variable
             sleepThread(5000);
         }
-    }
-    
-    /**
-     * Used to stop reader by chaging threadRunning value
-     */
-    @Override
-    public void stopReader(){
-        super.stopReader();
-        threadRunning = false;
     }
 
     /**
