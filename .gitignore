@@ -1,8 +1,7 @@
 /java/.settings/
 /java/bin/
-/web/
+/web/.settings/
+/web/build/
 *.class
 *.classpath
 *.project
-/web/.settings/
-/web/build/
