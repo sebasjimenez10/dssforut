@@ -1,3 +1,8 @@
-/java/DSSforUT-SensorKnowledgeManager/nbproject/private/
-/java/DSSforUT-SensorKnowledgeManager/build/
-/java/DSSforUT-SensorKnowledgeManager/dist/
+/java/.settings/
+/java/bin/
+/web/
+*.class
+*.classpath
+*.project
+/web/.settings/
+/web/build/
