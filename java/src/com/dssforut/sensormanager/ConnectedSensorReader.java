@@ -5,6 +5,9 @@
 package com.dssforut.sensormanager;
 
 import com.dssforut.sensormanager.sensordata.SensorObtainedData;
+import com.dssforut.util.EnvInfoEnum;
+import com.dssforut.util.PropsReader;
+import com.dssforut.util.PropsReader.ConfigTarget;
 import com.rapplogic.xbee.api.ApiId;
 import com.rapplogic.xbee.api.PacketListener;
 import com.rapplogic.xbee.api.XBee;
@@ -57,8 +60,10 @@ public class ConnectedSensorReader extends SensorReader implements PacketListene
     @Override
     public void run(){
         //PropertyConfigurator.configure("log4j.properties");
+    	//Get port from environment configuration file
+    	String port = new PropsReader().getConfigProperty(ConfigTarget.environment, EnvInfoEnum.usb_com_port);
         try {
-            xbee.open("COM5", 9600);
+            xbee.open(port, 9600);
             xbee.addPacketListener(this);
             
         } catch (XBeeException xe) {

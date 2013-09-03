@@ -24,7 +24,7 @@ public class PropsReaderTest {
      @Test
      public void getDbUser() {
          String expected = "dssforut_root";
-         String property = DatabaseInfoEnum.db_user.name();
+         DatabaseInfoEnum property = DatabaseInfoEnum.db_user;
          
          actAssert(PropsReader.ConfigTarget.database, expected, property);
      }
@@ -32,7 +32,7 @@ public class PropsReaderTest {
      @Test
      public void getDbName() {
          String expected = "dssforut_db";
-         String property = DatabaseInfoEnum.db_name.name();
+         DatabaseInfoEnum property = DatabaseInfoEnum.db_name;
          
          actAssert(PropsReader.ConfigTarget.database, expected, property);
      }
@@ -40,7 +40,7 @@ public class PropsReaderTest {
      @Test
      public void getDbPassword() {
          String expected = "dssforut_root";
-         String property = DatabaseInfoEnum.db_password.name();
+         DatabaseInfoEnum property = DatabaseInfoEnum.db_password;
          
          actAssert(PropsReader.ConfigTarget.database, expected, property);
      }
@@ -48,7 +48,7 @@ public class PropsReaderTest {
      @Test
      public void getDbHost() {
          String expected = "ec2-23-21-211-172.compute-1.amazonaws.com";
-         String property = DatabaseInfoEnum.db_host.name();
+         DatabaseInfoEnum property = DatabaseInfoEnum.db_host;
          
          actAssert(PropsReader.ConfigTarget.database, expected, property);
      }
@@ -57,12 +57,41 @@ public class PropsReaderTest {
      public void getEnvValue(){
          
          String expected = "false";
-         String property = EnvInfoEnum.real_env.name();
+         EnvInfoEnum property = EnvInfoEnum.real_env;
          
          actAssert(PropsReader.ConfigTarget.environment, expected, property);
      }
      
-     public void actAssert( PropsReader.ConfigTarget value, String expected, String property ){
+     @Test
+     public void getEnvFrecuency(){
+         
+         String expected = "10000";
+         EnvInfoEnum property = EnvInfoEnum.disconnected_env_frecuency;
+         
+         actAssert(PropsReader.ConfigTarget.environment, expected, property);
+     }
+     
+     @Test
+     public void getEnvPort(){
+         
+         String expected = "COM5";
+         EnvInfoEnum property = EnvInfoEnum.usb_com_port;
+         
+         actAssert(PropsReader.ConfigTarget.environment, expected, property);
+     }
+     
+     public void actAssert( PropsReader.ConfigTarget value, String expected, DatabaseInfoEnum property ){
+         
+         //ARRANGE
+         PropsReader reader = new PropsReader();
+         //ACT
+         String actual = reader.getConfigProperty(value, property);
+         //ASSERT
+         Assert.assertEquals( expected, actual);
+         
+     }
+     
+     private void actAssert( PropsReader.ConfigTarget value, String expected, EnvInfoEnum property ){
          
          //ARRANGE
          PropsReader reader = new PropsReader();

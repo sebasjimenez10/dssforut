@@ -50,6 +50,26 @@ public class PropsReader {
     }
     
     /**
+     * Bridge method to getConfigProperty receiving EnvInfoEnum element
+     * @param targetConfig
+     * @param property
+     * @return
+     */
+    public String getConfigProperty(ConfigTarget targetConfig, EnvInfoEnum property){
+    	return this.getConfigProperty(targetConfig, property.name());
+    }
+    
+    /**
+     * Bridge method to getConfigProperty receiving Database element
+     * @param targetConfig
+     * @param property
+     * @return
+     */
+    public String getConfigProperty(ConfigTarget targetConfig, DatabaseInfoEnum property){
+    	return this.getConfigProperty(targetConfig, property.name());
+    }
+    
+    /**
      * This method get a property from specific config file
      * @param targetConfig desired configuration (database, environment, etc.)
      * Options can be found in PropsReader.ConfigTarget enum
@@ -58,7 +78,7 @@ public class PropsReader {
      * @return The value of the requested property
      * @throws Exception if the property does not exist
      */
-    public String getConfigProperty(ConfigTarget targetConfig, String property){
+    private String getConfigProperty(ConfigTarget targetConfig, String property){
         
         //Get the file where are the routes for the config files
         Properties routesFile = getFile(ROUTES_FILE);

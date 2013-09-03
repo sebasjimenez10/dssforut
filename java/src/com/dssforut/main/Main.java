@@ -29,7 +29,7 @@ public class Main {
         //Get env configuration to know if we are connected or not to xbee
         String disconnectedEnvironment = new PropsReader().getConfigProperty(
                 PropsReader.ConfigTarget.environment,
-                EnvInfoEnum.real_env.name());
+                EnvInfoEnum.real_env );
         
         if (disconnectedEnvironment.equals("false")) {
             

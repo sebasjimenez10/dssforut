@@ -29,7 +29,7 @@ public class DisconnectedSensorReader extends SensorReader{
         //Read frecuency from env properties
         frecuency = Integer.parseInt( new PropsReader().getConfigProperty(
                 PropsReader.ConfigTarget.environment,
-                EnvInfoEnum.disconnected_env_frecuency.name()) );
+                EnvInfoEnum.disconnected_env_frecuency ) );
         //Start reading thread
         new Thread(this).start();
     }
@@ -81,10 +81,12 @@ public class DisconnectedSensorReader extends SensorReader{
      */
     private void sleepThread(int millis) {
         try {
+        	System.out.println("Sleeping thread");
             Thread.sleep(millis);
         } catch (InterruptedException ex) {
             Logger.getLogger(DisconnectedSensorReader.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("Waking up thread");
     }
     
 }
