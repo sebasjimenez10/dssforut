@@ -4,185 +4,185 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="css/bootstrap-formhelpers.css" rel="stylesheet" media="screen">
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootstrap-formhelpers-datepicker.en_US.js"></script>
-        <script src="js/bootstrap-formhelpers-datepicker.js"></script>
-    </head>
-    <body>
-        <br>
-        <div class="container-fluid controls">
-            <div class="row-fluid controls-row">
-                <div class="tabbable">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
-                        <li><a href="#sensorx" data-toggle="tab">Sensor X</a></li>
-                        <li><a href="#historico" data-toggle="tab">Historico</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="overview">
-                            <div style="background: rgba(255, 255, 255, 0.8);">
-                                <table class="table">
-                                    <col width="20%">
-                                    <col width="50%">
-                                    <col width="30%">
-                                    <tr>
-                                        <th>Humedad (%): </th>
-                                        <td><input class="span12" id="humedad" type="text"></td>
-                                        <td>El valor ideal es:</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Temperatura (C°): </th>
-                                        <td><input class="span12" id="temperatura" type="text"></td>
-                                        <td>El valor ideal es:</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Humedad del suelo [1 - 5]: </th>
-                                        <td><input class="span12" id="humedadsuelo" type="text"></td>
-                                        <td>El valor ideal es:</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Intensidad de luz [1 - 5]: </th>
-                                        <td><input class="span12" id="intensidadluz" type="text"></td>
-                                        <td>El valor ideal es:</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Radiacion UV [1 - 10]: </th>
-                                        <td><input class="span12" id="radiacionuv" type="text"></td>
-                                        <td>El valor ideal es:</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Overall current state</th>
-                                        <td colspan="2"><input class="text-center span12" id="overallce" type="text"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="sensorx">
-                            <div style="background: rgba(255, 255, 255, 0.8);">
-                                <table class="table">
-                                    <tr>
-                                        <th>Variable: </th>
-                                        <td>
-                                            <select class="span12">
-                                                <option>Humedad (%)</option>
-                                                <option>Temperatura (C°)</option>
-                                                <option>Humedad del Suelo</option>
-                                                <option>Intensidad de luz</option>
-                                                <option>Radiacion UV</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div align="center">
-                                    <img src="img/chart-eg2.gif">
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="historico">
-                            <div style="background: rgba(255, 255, 255, 0.8);">
-                                <table class="table">
-                                    <tr>
-                                        <th colspan="2">Variable: </th>
-                                        <td colspan="2">
-                                            <select class="span12">
-                                                <option>Humedad (%)</option>
-                                                <option>Temperatura (C°)</option>
-                                                <option>Humedad del Suelo</option>
-                                                <option>Intensidad de luz</option>
-                                                <option>Radiacion UV</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Rango de fechas:</th>
-                                        <td>
-                                            <!-- Date Picker -->
-                                            <div class="bfh-datepicker">
-                                                <div class="input-prepend bfh-datepicker-toggle" data-toggle="bfh-datepicker">
-                                                    <span class="add-on"><i class="icon-calendar"></i></span>
-                                                    <input type="text" class="span12" placeholder="Fecha Inicial">
-                                                </div>
-                                                <div class="bfh-datepicker-calendar">
-                                                    <table class="calendar table table-bordered">
-                                                        <thead>
-                                                            <tr class="months-header">
-                                                                <th class="month" colspan="4">
-                                                                    <a class="previous" href="#"><i class="icon-chevron-left"></i></a>
-                                                                    <span></span>
-                                                                    <a class="next" href="#"><i class="icon-chevron-right"></i></a>
-                                                                </th>
-                                                                <th class="year" colspan="3">
-                                                                    <a class="previous" href="#"><i class="icon-chevron-left"></i></a>
-                                                                    <span></span>
-                                                                    <a class="next" href="#"><i class="icon-chevron-right"></i></a>
-                                                                </th>
-                                                            </tr>
-                                                            <tr class="days-header">
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <!-- Date Picker -->
-                                        </td>
-                                        <td>
-                                            <!-- Date Picker -->
-                                            <div class="bfh-datepicker">
-                                                <div class="input-prepend bfh-datepicker-toggle" data-toggle="bfh-datepicker">
-                                                    <span class="add-on"><i class="icon-calendar"></i></span>
-                                                    <input type="text" class="span12" placeholder="Fecha Final">
-                                                </div>
-                                                <div class="bfh-datepicker-calendar">
-                                                    <table class="calendar table table-bordered">
-                                                        <thead>
-                                                            <tr class="months-header">
-                                                                <th class="month" colspan="4">
-                                                                    <a class="previous" href="#"><i class="icon-chevron-left"></i></a>
-                                                                    <span></span>
-                                                                    <a class="next" href="#"><i class="icon-chevron-right"></i></a>
-                                                                </th>
-                                                                <th class="year" colspan="3">
-                                                                    <a class="previous" href="#"><i class="icon-chevron-left"></i></a>
-                                                                    <span></span>
-                                                                    <a class="next" href="#"><i class="icon-chevron-right"></i></a>
-                                                                </th>
-                                                            </tr>
-                                                            <tr class="days-header">
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <!-- Date Picker -->
-                                        </td>
-                                        <td><button class="btn btn-success span12" type="button">Consultar</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4">
-                                            <div align="center">
-                                                <img src="img/chart-eg.png">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-formhelpers.css" rel="stylesheet"
+	media="screen">
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-formhelpers-datepicker.en_US.js"></script>
+<script src="js/bootstrap-formhelpers-datepicker.js"></script>
+<script src="js/service-caller.js"></script>
+<script src="js/historico.js"></script>
+<script src="js/Chart.js"></script>
+</head>
+<body>
+	<br>
+	<div class="container-fluid controls">
+		<div class="row-fluid controls-row">
+			<div class="tabbable">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
+					<li><a href="#sensorx" data-toggle="tab">Sensor X</a></li>
+					<li><a href="#historico" data-toggle="tab">Historico</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="overview">
+						<div style="background: rgba(255, 255, 255, 0.8);">
+							<table class="table">
+								<col width="20%">
+								<col width="50%">
+								<col width="30%">
+								<tr>
+									<th>Humedad (%):</th>
+									<td><input class="span12" id="humedad" type="text"></td>
+									<td>El valor ideal es:</td>
+								</tr>
+								<tr>
+									<th>Temperatura (C°):</th>
+									<td><input class="span12" id="temperatura" type="text"></td>
+									<td>El valor ideal es:</td>
+								</tr>
+								<tr>
+									<th>Humedad del suelo [1 - 5]:</th>
+									<td><input class="span12" id="humedadsuelo" type="text"></td>
+									<td>El valor ideal es:</td>
+								</tr>
+								<tr>
+									<th>Intensidad de luz [1 - 5]:</th>
+									<td><input class="span12" id="intensidadluz" type="text"></td>
+									<td>El valor ideal es:</td>
+								</tr>
+								<tr>
+									<th>Radiacion UV [1 - 10]:</th>
+									<td><input class="span12" id="radiacionuv" type="text"></td>
+									<td>El valor ideal es:</td>
+								</tr>
+								<tr>
+									<th>Overall current state</th>
+									<td colspan="2"><input class="text-center span12"
+										id="overallce" type="text"></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="tab-pane" id="sensorx">
+						<div style="background: rgba(255, 255, 255, 0.8);">
+							<table class="table">
+								<tr>
+									<th>Variable:</th>
+									<td><select class="span12">
+											<option>Humedad</option>
+											<option>Temperatura</option>
+											<option>Humedad del Suelo</option>
+											<option>Intensidad de Luz</option>
+											<option>Radiacion UV</option>
+									</select></td>
+								</tr>
+							</table>
+							<div align="center">
+								<img src="img/chart-eg2.gif">
+							</div>
+							<br>
+						</div>
+					</div>
+					<div class="tab-pane" id="historico">
+						<div style="background: rgba(255, 255, 255, 0.8);">
+							<table class="table">
+								<tr>
+									<th colspan="2">Variable:</th>
+									<td colspan="2"><select id="variables" class="span12">
+											<option>Humedad</option>
+											<option>Temperatura</option>
+											<option>Humedad del Suelo</option>
+											<option>Intensidad de Luz</option>
+											<option>Radiacion UV</option>
+									</select></td>
+								</tr>
+								<tr>
+									<th>Rango de fechas:</th>
+									<td>
+										<!-- Date Picker -->
+										<div class="bfh-datepicker">
+											<div class="input-prepend bfh-datepicker-toggle"
+												data-toggle="bfh-datepicker">
+												<span class="add-on"><i class="icon-calendar"></i></span> <input
+													id="mindate" type="text" class="span12"
+													placeholder="Fecha Inicial">
+											</div>
+											<div class="bfh-datepicker-calendar">
+												<table class="calendar table table-bordered">
+													<thead>
+														<tr class="months-header">
+															<th class="month" colspan="4"><a class="previous"
+																href="#"><i class="icon-chevron-left"></i></a> <span></span>
+																<a class="next" href="#"><i
+																	class="icon-chevron-right"></i></a></th>
+															<th class="year" colspan="3"><a class="previous"
+																href="#"><i class="icon-chevron-left"></i></a> <span></span>
+																<a class="next" href="#"><i
+																	class="icon-chevron-right"></i></a></th>
+														</tr>
+														<tr class="days-header">
+														</tr>
+													</thead>
+													<tbody>
+													</tbody>
+												</table>
+											</div>
+										</div> <!-- Date Picker -->
+									</td>
+									<td>
+										<!-- Date Picker -->
+										<div class="bfh-datepicker">
+											<div class="input-prepend bfh-datepicker-toggle"
+												data-toggle="bfh-datepicker">
+												<span class="add-on"><i class="icon-calendar"></i></span> <input
+													id="maxdate" type="text" class="span12"
+													placeholder="Fecha Final">
+											</div>
+											<div class="bfh-datepicker-calendar">
+												<table class="calendar table table-bordered">
+													<thead>
+														<tr class="months-header">
+															<th class="month" colspan="4"><a class="previous"
+																href="#"><i class="icon-chevron-left"></i></a> <span></span>
+																<a class="next" href="#"><i
+																	class="icon-chevron-right"></i></a></th>
+															<th class="year" colspan="3"><a class="previous"
+																href="#"><i class="icon-chevron-left"></i></a> <span></span>
+																<a class="next" href="#"><i
+																	class="icon-chevron-right"></i></a></th>
+														</tr>
+														<tr class="days-header">
+														</tr>
+													</thead>
+													<tbody>
+													</tbody>
+												</table>
+											</div>
+										</div> <!-- Date Picker -->
+									</td>
+									<td><button class="btn btn-success span12" type="button"
+											onclick="getHistorico();">Consultar</button></td>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<div align="center">
+											<canvas id="myChart" width="900" height="400"></canvas>
+										</div>
+									</td>
+								</tr>
+							</table>
+							<br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
 </html>
