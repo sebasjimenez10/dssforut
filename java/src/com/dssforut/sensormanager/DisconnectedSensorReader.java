@@ -21,6 +21,7 @@ public class DisconnectedSensorReader extends SensorReader{
     private boolean threadRunning = true;
     //Default frecuency
     private int frecuency = 5000;
+    
     /**
      * Used to start receiving data from sensors
      */

@@ -33,7 +33,7 @@ public class HistoryService {
 		//Run validations
 		ServiceParamsValidations.historyServiceValidations(minDateObj, maxDateObj, variable);
 		
-		//Execute logic
+		//Execute query logic
 		DataController dm = new DataController();
 		HistoryData hd = dm.selectDataWithFechaAndVariable(maxDateObj, minDateObj, variable);
 		
