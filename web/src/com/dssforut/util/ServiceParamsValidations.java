@@ -18,7 +18,7 @@ public class ServiceParamsValidations {
 		}
 
 		// min date must be smaller than max date
-		if (minDate.compareTo(maxDate) >= 0) {
+		if (minDate.compareTo(maxDate) > 0) {
 			throw new Exception("min date is greater than max date");
 		}
 	}
