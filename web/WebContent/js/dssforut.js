@@ -23,6 +23,10 @@ function getHistorico() {
 		alert("Select dates first"); //Cambiar por los alerts de bootstrap
 		return;
 	}
+	if( mindate.value == maxdate.value ){
+		alert("You should select more than one day"); //Cambiar por los alerts de bootstrap
+		return;
+	}
 
 	var params = "min=" + mindate.value + "&max=" + maxdate.value
 			+ "&variable=" + variable;
