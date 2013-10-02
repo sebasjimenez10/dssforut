@@ -56,8 +56,8 @@ public class DisconnectedSensorReader extends SensorReader{
         //while threadRunning is true we simulate data and send it to observer
         while( threadRunning ){
             //Simulated data
-            String data = RandomRange.generateRandomRange(30, 60) + separator + RandomRange.generateRandomRange(15, 25)
-                    + separator + RandomRange.generateRandomRange(3, 11) + separator + RandomRange.generateRandomRange(20, 30)
+            String data = RandomRange.generateRandomRange(30f, 60f) + separator + RandomRange.generateRandomRange(15f, 25f)
+                    + separator + RandomRange.generateRandomRange(3f, 11f) + separator + RandomRange.generateRandomRange(20f, 30f)
                     + separator + RandomRange.generateRandomRange(1, 10);
             //Fake sender node
             String node = "Fake Node" + RandomRange.generateRandomRange(1, 3);

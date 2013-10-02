@@ -17,4 +17,9 @@ public class RandomRange {
         int result = min + (int)(Math.random() * ((max - min) + 1));
         return result;
     }
+    
+    public static float generateRandomRange(float min, float max) {
+        float result = min + (float)(Math.random() * ((max - min) + 1));
+        return result;
+    }
 }
