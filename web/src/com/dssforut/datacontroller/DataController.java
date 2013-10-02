@@ -16,6 +16,7 @@ import org.jooq.impl.DSL;
 
 import com.dssforut.datamodel.tables.SensorDataRegistry;
 import com.dssforut.services.HistoryData;
+import com.dssforut.util.PropsReader;
 import com.mysql.jdbc.Connection;
 
 
@@ -29,7 +30,6 @@ public class DataController {
 			conn = this.getConnection();
 			create = DSL.using(conn, SQLDialect.MYSQL);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -125,12 +125,14 @@ public class DataController {
 	}
 
 	public Connection getConnection() throws IOException {
-		
+
+		PropsReader pr = new PropsReader();
 		if( conn == null ){
-			String db_host = "ec2-23-21-211-172.compute-1.amazonaws.com";
-			String db_name = "dssforut_db";
-			String db_user = "dssforut_root";
-			String db_password = "dssforut_root";
+			
+			String db_host = pr.readProperty("db_host");
+			String db_name = pr.readProperty("db_name");
+			String db_user = pr.readProperty("db_user");
+			String db_password = pr.readProperty("db_password");
 			
 			String url = "jdbc:mysql://" + db_host + ":3306/" + db_name;
 			

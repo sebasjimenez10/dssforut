@@ -1,15 +1,17 @@
 
-/**
- * BUSINESS ELEMENTS
- */
+//HOST
 //var host = "http://localhost:8080/dssforut/services/";
-var host = "http://dssforut.sebasjimenezv.cloudbees.net/services/";
-
-/**
- * SERVICES
- */
+//var host = "http://dssforut.sebasjimenezv.cloudbees.net/services/";
+var host;
+loadConfigFile("javascript_config.json");
+//SERVICES
 var service = "history?";
 
+//FUNCTIONS
+/**
+ * Obtiene el historico a partir de las fechas y la variable
+ * seleccionadas 
+ */
 function getHistorico() {
 
 	var mindate = document.getElementById("mindate");
@@ -25,7 +27,7 @@ function getHistorico() {
 	var params = "min=" + mindate.value + "&max=" + maxdate.value
 			+ "&variable=" + variable;
 
-	var url = host + service + params;
+	var url = host.host + service + params;
 	sendRequest(url);
 	
 	spin("historico");
@@ -82,6 +84,28 @@ function sendRequest(url) {
 }
 
 /**
+ * This function loads the config file
+ */
+function loadConfigFile(url) {
+	
+	var xmlhttp = new XMLHttpRequest();
+	// true - it's async
+	xmlhttp.open('GET', url, true);
+	xmlhttp.onreadystatechange = function(){
+		if (xmlhttp.readyState == 4) {
+			if (xmlhttp.status == 200) {
+				//SUCCESS
+				host = eval( "(" + xmlhttp.responseText + ")" );
+			} else {
+				//ERROR
+			}
+		}
+	}
+	xmlhttp.setRequestHeader("Content-Type", "text/plain");
+	xmlhttp.send(null);
+}
+
+/**
  * Spin.js
  */
 var spinner;
@@ -97,7 +121,7 @@ function spin (element){
 		  color: '#000', // #rgb or #rrggbb or array of colors
 		  speed: 1, // Rounds per second
 		  trail: 60, // Afterglow percentage
-		  shadow: false, // Whether to render a shadow
+		  shadow: true, // Whether to render a shadow
 		  hwaccel: false, // Whether to use hardware acceleration
 		  className: 'spinner', // The CSS class to assign to the spinner
 		  zIndex: 2e9, // The z-index (defaults to 2000000000)
