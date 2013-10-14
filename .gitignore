@@ -3,7 +3,7 @@
 /web/.settings/
 /web/build/
 /build
-/dist
+/web/dist
 /web/lib
 *.class
 *.classpath
