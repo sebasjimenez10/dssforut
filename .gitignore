@@ -2,6 +2,9 @@
 /java/bin/
 /web/.settings/
 /web/build/
+/build
+/dist
+/web/lib
 *.class
 *.classpath
 *.project
