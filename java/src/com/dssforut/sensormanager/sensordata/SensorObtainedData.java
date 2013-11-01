@@ -1,6 +1,9 @@
 package com.dssforut.sensormanager.sensordata;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.json.JSONObject;
 
 /**
  * This class maps the needed data to be stored in the data base, including
@@ -9,9 +12,7 @@ import java.util.Date;
  */
 public class SensorObtainedData {
     //Data sent from sensor
-    private String data;
-    //Sensor ID sending data
-    private String node;
+    private String frame;
     //Time when the data got read
     private Date time;
 
@@ -19,9 +20,8 @@ public class SensorObtainedData {
     public SensorObtainedData() {
     }
     //Constructor with full data
-    public SensorObtainedData(String data, String node, Date time) {
-        this.data = data;
-        this.node = node;
+    public SensorObtainedData(String data, Date time) {
+        this.frame = data;
         this.time = time;
     }
     
@@ -29,32 +29,16 @@ public class SensorObtainedData {
      * Returns data value
      * @return data
      */
-    public String getData() {
-        return data;
+    public String getFrame() {
+        return frame;
     }
     
     /**
      * Sets the data value
      * @param data 
      */
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    /**
-     * Returns the node ID
-     * @return node
-     */
-    public String getNode() {
-        return node;
-    }
-
-    /**
-     * Sets the node ID
-     * @param node 
-     */
-    public void setNode(String node) {
-        this.node = node;
+    public void setFrame(String frame) {
+        this.frame = frame;
     }
 
     /**
@@ -79,6 +63,18 @@ public class SensorObtainedData {
      */
     @Override
     public String toString(){
-        return "{data: " + this.data + " node: " + this.node + "}";
+    	
+    	String splittedData [] = this.frame.split("/");
+    	JSONObject data = new JSONObject();
+    	
+    	data.put("humedad", splittedData[0]);
+    	data.put("temperatura", splittedData[1]);
+    	data.put("humedad_suelo", splittedData[2]);
+    	data.put("intensidad_luz", splittedData[3]);
+    	data.put("radiacion", splittedData[4]);
+    	data.put("nodo", splittedData[5]);
+    	data.put("hora", new SimpleDateFormat("HH:mm:SS").format(this.time));
+    	
+        return data.toString();
     }
 }

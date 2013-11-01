@@ -83,10 +83,9 @@ public class ConnectedSensorReader extends SensorReader implements PacketListene
             ZNetRxResponse znetResponse = (ZNetRxResponse) response;
 
             String data = ByteUtils.toString(znetResponse.getData());
-            String node = "Nodo Cualquiera";
             System.out.println("Received Data from Sensor: " + data);
 
-            SensorObtainedData sod = new SensorObtainedData(data, node, new Date());
+            SensorObtainedData sod = new SensorObtainedData(data, new Date());
             
             this.setChanged();
             this.notifyObservers(sod);

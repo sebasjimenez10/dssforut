@@ -2,6 +2,8 @@ package com.dssforut.sensormanager;
 
 import com.dssforut.sensormanager.sensordata.SensorObtainedData;
 import com.dssforut.sensormanager.sensordata.SensorDataManager;
+import com.dssforut.util.ServiceCaller;
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -39,8 +41,12 @@ public class SensorReaderObserver implements Observer {
         //Casted object is sent to store the data
         sdm.sendFullPacketToDb( data );
         
-        //In some point here the data must be sent to knowloedge base so
-        //it can be figured out if everythings is ok or if there is something
+        
+        //Call WebService to post data on server
+        ServiceCaller.postDataOnServer( data.toString() );
+        
+        //In some point here the data must be sent to knowledge base so
+        //it can be figured out if everything is OK or if there is something
         //going wrong.
     }
 }

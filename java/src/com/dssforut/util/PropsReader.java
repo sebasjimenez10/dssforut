@@ -39,11 +39,12 @@ public class PropsReader {
         
         try {
             //Load a properties file
-            props.load(new FileInputStream(file));
+            props.load( new FileInputStream(file) );
+        	//props.load( this.getClass().getResourceAsStream(file) );
 
         } catch (IOException ex) {            
             Logger.getLogger(PropsReader.class.getName()).log(Level.SEVERE,
-                    "It was not possible to load: " + file + " file.", ex);
+                    "It was not possible to load: \"" + file + "\" file.", ex);
         }
         
         return props;

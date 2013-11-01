@@ -44,8 +44,8 @@ public class SensorDataManager {
         
         Connection conn = getConnection();
 
-        String separatedData [] = data.getData().split( separator );
-        pushDataPacket(conn, separatedData, data.getTime(), data.getNode());
+        String separatedData [] = data.getFrame().split( separator );
+        pushDataPacket(conn, separatedData, data.getTime(), separatedData[separatedData.length - 1]);
 
         closeConnection(conn);
     }
@@ -101,7 +101,7 @@ public class SensorDataManager {
         
         DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
 
-        for (int i = 0; i < separatedData.length; i++) {
+        for (int i = 0; i < separatedData.length - 1; i++) {
             
             create.insertInto(SENSOR_DATA_REGISTRY)
                 .set(SENSOR_DATA_REGISTRY.FECHA, new Date(time.getTime()))

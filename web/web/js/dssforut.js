@@ -118,33 +118,62 @@ function spin(element) {
 /**
  * Load Charts
  */
+var chart;
+var dps;
 function loadCharts() {
-    var humedad = {
-    labels: ["1","2","3","4","5"],
-    datasets: [{
-            fillColor: "rgba(151,187,205,0.5)",
-            strokeColor: "rgba(151,187,205,1)",
-            pointColor: "rgba(151,187,205,1)",
-            pointStrokeColor: "#fff",
-            data: [12,23,11,67,23]
-        }]
-    };
 
-    // Get the context of the canvas element we want to select
-    var ctx = document.getElementById("humedadChart").getContext("2d");
-    new Chart(ctx).Line(humedad);
-    
-    var ctx = document.getElementById("tempChart").getContext("2d");
-    new Chart(ctx).Line(humedad);
-    
-    var ctx = document.getElementById("humedadSueloChart").getContext("2d");
-    new Chart(ctx).Line(humedad);
-    
-    var ctx = document.getElementById("luzChart").getContext("2d");
-    new Chart(ctx).Line(humedad);
-    
-    var ctx = document.getElementById("radiacionChart").getContext("2d");
-    new Chart(ctx).Line(humedad);
-    
-    
+    dps = []; // dataPoints
+
+    chart = new CanvasJS.Chart("humedadChart", {
+        title: {
+            text: "Humedad Data"
+        },
+        data: [{
+                type: "line",
+                dataPoints: dps
+            }]
+    });
+}
+
+var a = 1;
+function updateChart(xVal, yVal) {
+
+    var dataLength = 20; // number of dataPoints visible at any point
+
+    if (dps.length > dataLength)
+    {
+        dps.shift();
+    }
+
+    dps.push({
+        label: xVal,
+        x: a++,
+        y: Number(yVal)
+    });
+
+    chart.render();
+}
+
+var webSocket = new WebSocket("ws://" + document.location.host + document.location.pathname + "datasocket");
+
+webSocket.onerror = function(event) {
+    onError(event);
+};
+webSocket.onopen = function(event) {
+    onOpen(event);
+};
+webSocket.onmessage = function(event) {
+    onMessage(event);
+};
+
+function onMessage(event) {
+    var data = eval("(" + event.data + ")");
+
+    updateChart(data.hora, data.humedad);
+}
+function onOpen(event) {
+
+}
+function onError(event) {
+    alert(event.data);
 }

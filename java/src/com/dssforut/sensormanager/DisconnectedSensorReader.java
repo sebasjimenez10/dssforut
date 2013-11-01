@@ -58,15 +58,14 @@ public class DisconnectedSensorReader extends SensorReader{
             //Simulated data
             String data = RandomRange.generateRandomRange(30f, 60f) + separator + RandomRange.generateRandomRange(15f, 25f)
                     + separator + RandomRange.generateRandomRange(3f, 11f) + separator + RandomRange.generateRandomRange(20f, 30f)
-                    + separator + RandomRange.generateRandomRange(1, 10);
-            //Fake sender node
-            String node = "Fake Node" + RandomRange.generateRandomRange(1, 3);
+                    + separator + RandomRange.generateRandomRange(1, 10) + separator + "Fake Node" + RandomRange.generateRandomRange(1, 3);
+            
             //Current time
             Date time = new Date();
             //Printing data and node
-            System.out.println("\"Received data\" from: " + node + ": " + data);
+            System.out.println("\"Received data\" from:: " + data);
             //Packing data into object
-            SensorObtainedData sd = new SensorObtainedData(data, node, time);
+            SensorObtainedData sd = new SensorObtainedData(data, time);
             //Setting state of the observable object
             this.setChanged();
             //notifying all observers with packed data object

@@ -37,6 +37,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.dssforut.services.HistoryService.class);
+        resources.add(com.dssforut.services.RealtimeService.class);
     }
     
 }
