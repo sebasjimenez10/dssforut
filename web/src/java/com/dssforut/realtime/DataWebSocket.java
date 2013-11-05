@@ -28,10 +28,9 @@ public class DataWebSocket {
     
     @OnOpen
     public void onOpen(Session session){
-    
         sessions.add(session);
         this.sendStoredData(session);
-        System.out.println("Session added: " + session.getId());
+        System.out.println("Session added: " + session.getId() + " Total sessions: " + sessions.size());
     }
     
     @OnMessage
@@ -39,8 +38,8 @@ public class DataWebSocket {
     
     @OnClose
     public void onClose(Session session){
-        System.out.println("Session removed: " + session.getId());
         sessions.remove(session);
+        System.out.println("Session removed: " + session.getId() + " Total sessions: " + sessions.size());
     }
     
     /**

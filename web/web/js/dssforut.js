@@ -115,8 +115,7 @@ function loadCharts() {
     var chartTitles = ["Humedad", "Humedad del Suelo", "Radiacion", "Intensidad de la Luz", "Temperatura"];
 
     for (var i = 0; i < chartsArrayLength; i++) {
-        chartsArray.push(
-                new CanvasJS.Chart(chartIds[i], {
+        chartsArray.push( new CanvasJS.Chart(chartIds[i], {
             title: {
                 text: chartTitles[i]
             },
@@ -161,8 +160,9 @@ function updateCharts(data) {
 /**
  * Comment
  */
+var webSocket;
 function connect() {
-    var webSocket = new WebSocket("ws://" + document.location.host + document.location.pathname + "datasocket");
+    webSocket = new WebSocket("ws://" + document.location.host + document.location.pathname + "datasocket");
 
     webSocket.onerror = function(event) {
         onError(event);
@@ -185,3 +185,18 @@ function onOpen(event) {
 function onError(event) {
     alert(event.data);
 }
+
+/**
+ * Comment
+ */
+function closeWebConn() {
+    webSocket.onclose = function() {
+    }; // disable onclose handler first
+    webSocket.close();
+}
+
+window.onbeforeunload = closeWebConn;
+window.onload = function() {
+    loadCharts();
+    connect();
+};
