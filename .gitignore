@@ -1,6 +1,7 @@
 /java/.settings/
 /java/bin/
 /web/.settings/
+/web/dist/
 /web/build/
 /build
 /web/dist
