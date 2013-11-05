@@ -30,7 +30,7 @@ public class DataWebSocket {
     public void onOpen(Session session){
         sessions.add(session);
         this.sendStoredData(session);
-        System.out.println("Session added: " + session.getId() + " Total sessions: " + sessions.size());
+        System.out.println("Session added: " + session.getId()+ " Total sessions: " + sessions.size());
     }
     
     @OnMessage
@@ -55,7 +55,11 @@ public class DataWebSocket {
             }
         }
     }
-
+    
+    /**
+     * 
+     * @param session 
+     */
     private void sendStoredData(Session session) {
         DataHolder dh = new DataHolder();
         String[] memoryData = dh.getMemoryData();

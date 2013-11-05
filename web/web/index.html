@@ -48,12 +48,12 @@ and open the template in the editor.
                                         <td>El valor ideal es:</td>
                                     </tr>
                                     <tr>
-                                        <th>Humedad del suelo [1 - 5]:</th>
+                                        <th>Humedad del suelo (%):</th>
                                         <td><div id="humedadSueloChart" style="height: 400px; width: 800px;" ></div></td>
                                         <td>El valor ideal es:</td>
                                     </tr>
                                     <tr>
-                                        <th>Intensidad de luz [1 - 5]:</th>
+                                        <th>Intensidad de luz (%):</th>
                                         <td><div id="luzChart" style="height: 400px; width: 800px;" ></div></td>
                                         <td>El valor ideal es:</td>
                                     </tr>
@@ -71,21 +71,23 @@ and open the template in the editor.
                             </div>
                         </div>
                         <div class="tab-pane" id="sensorx">
-                            <div style="background: rgba(255, 255, 255, 0.8);">
+                            <div style="background: rgba(255, 255, 255, 0.8); ">
                                 <table class="table">
                                     <tr>
                                         <th>Variable:</th>
-                                        <td><select class="span12">
+                                        <td><select id="sensorxSelect" class="span12">
                                                 <option>Humedad</option>
                                                 <option>Temperatura</option>
                                                 <option>Humedad del Suelo</option>
                                                 <option>Intensidad de Luz</option>
                                                 <option>Radiacion UV</option>
-                                            </select></td>
+                                            </select>
+                                        </td>
+                                        <td></td>
                                     </tr>
                                 </table>
-                                <div align="center">
-                                    <img src="img/chart-eg2.gif">
+                                <div>
+                                    <div id="sensor_x_chart" style="height: 400px; width: 800px; margin-left: auto; margin-right: auto;" ></div>
                                 </div>
                                 <br>
                             </div>
@@ -122,7 +124,7 @@ and open the template in the editor.
                                                                                                  href="#"><i class="icon-chevron-left"></i></a> <span></span>
                                                                     <a class="next" href="#"><i
                                                                             class="icon-chevron-right"></i></a></th>
-                                                                <th class="year" colspan="3"><a class="previous"
+                                                                <th class="year" colspan="4"><a class="previous"
                                                                                                 href="#"><i class="icon-chevron-left"></i></a> <span></span>
                                                                     <a class="next" href="#"><i
                                                                             class="icon-chevron-right"></i></a></th>

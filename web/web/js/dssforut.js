@@ -108,24 +108,65 @@ function spin(element) {
  */
 var chartsArray = [];
 var chartsArrayLength = 5;
+var sensor_xChart;
 
 function loadCharts() {
 
+    //Overview
     var chartIds = ["humedadChart", "humedadSueloChart", "radiacionChart", "luzChart", "tempChart"];
     var chartTitles = ["Humedad", "Humedad del Suelo", "Radiacion", "Intensidad de la Luz", "Temperatura"];
 
     for (var i = 0; i < chartsArrayLength; i++) {
-        chartsArray.push( new CanvasJS.Chart(chartIds[i], {
+        chartsArray.push(new CanvasJS.Chart(chartIds[i], {
             title: {
                 text: chartTitles[i]
             },
             data: [{
-                    type: "line",
+                    type: "spline",
                     dataPoints: new Array()
                 }]
         })
                 );
+        chartsArray[i].render();
     }
+
+    setSensorXChart();
+
+}
+
+/**
+ * Set sensor x chart
+ */
+function setSensorXChart() {
+    //Sensor X
+    var selector = document.getElementById("sensorxSelect");
+    var selectedSensor = selector.options[selector.options.selectedIndex].text;
+
+    sensor_xChart = new CanvasJS.Chart("sensor_x_chart", {
+        title: {
+            text: selectedSensor
+        },
+        data: [{
+                name: "Nodo1",
+                showInLegend: true,
+                type: "spline",
+                dataPoints: new Array()
+            },
+            {
+                type: "spline",
+                dataPoints: new Array(),
+                name: "Nodo2",
+                showInLegend: true
+            },
+            {
+                type: "spline",
+                dataPoints: new Array(),
+                name: "Nodo3",
+                showInLegend: true
+            }]
+    });
+
+    sensor_xChart.render();
 }
 
 /**
@@ -136,6 +177,7 @@ var counter = 1;
 var dataLength = 20; // number of dataPoints visible at any point
 function updateCharts(data) {
 
+    //Overview
     var hour = data.hora;
     var variables_data = [data.humedad, data.humedad_suelo, data.radiacion, data.intensidad_luz, data.temperatura];
 
@@ -154,7 +196,53 @@ function updateCharts(data) {
 
         chartsArray[i].render();
     }
+
+    //Sensor X
+    refreshSensorXChart(data);
+
     counter++;
+}
+
+/**
+ * 
+ * @param {type} data
+ * @returns {undefined}
+ */
+var sensorXCounter = 1;
+function refreshSensorXChart(data) {
+    var hour = data.hora;
+
+    var variables = [];
+    variables["Humedad"] = data.humedad;
+    variables["Temperatura"] = data.temperatura;
+    variables["Humedad del Suelo"] = data.humedad_suelo;
+    variables["Intensidad de Luz"] = data.intensidad_luz;
+    variables["Radiacion UV"] = data.radiacion;
+
+    var selector = document.getElementById("sensorxSelect");
+    var selectedSensor = selector.options[selector.options.selectedIndex].text;
+
+    var cdp;
+    if (data.nodo.indexOf("1") !== -1) {
+        cdp = sensor_xChart.options.data[0].dataPoints;
+    } else if (data.nodo.indexOf("2") !== -1) {
+        cdp = sensor_xChart.options.data[1].dataPoints;
+    } else {
+        cdp = sensor_xChart.options.data[2].dataPoints;
+    }
+    
+    if( cdp.length >= dataLength ){
+        cdp.shift();
+    }
+    
+    cdp.push({
+        label: hour,
+        x: sensorXCounter,
+        y: Number(variables[selectedSensor])
+    });
+    
+    sensorXCounter++;
+    sensor_xChart.render();
 }
 
 /**
@@ -175,10 +263,18 @@ function connect() {
     };
 }
 
+var dataArray = [];
 function onMessage(event) {
     var data = eval("(" + event.data + ")");
     updateCharts(data);
+
+    if (dataArray.length >= 20) {
+        dataArray.shift();
+    }
+    dataArray.push(data);
+
 }
+
 function onOpen(event) {
 
 }
@@ -199,4 +295,13 @@ window.onbeforeunload = closeWebConn;
 window.onload = function() {
     loadCharts();
     connect();
+    document.getElementById("sensorxSelect").onchange = function() {
+        setSensorXChart();
+        sensorXCounter = 0;
+        for (var i = 0; i < dataArray.length; i++) {
+            refreshSensorXChart(dataArray[i]);
+        }
+        
+    };
 };
+
