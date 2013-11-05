@@ -4,6 +4,7 @@
  */
 package com.dssforut.services;
 
+import com.dssforut.realtime.DataHolder;
 import com.dssforut.realtime.DataWebSocket;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -25,8 +26,10 @@ public class RealtimeService {
         
         System.out.println("Posted data = " + data);
         
-        DataWebSocket dws = new DataWebSocket();
+        DataHolder dh = new DataHolder();
+        dh.saveData(data);
         
+        DataWebSocket dws = new DataWebSocket();
         dws.broadcastMessage(data);
         
         return Response.status(201).entity(data).build();

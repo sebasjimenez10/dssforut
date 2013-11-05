@@ -116,16 +116,16 @@ function loadCharts() {
 
     for (var i = 0; i < chartsArrayLength; i++) {
         chartsArray.push(
-            new CanvasJS.Chart(chartIds[i], {
-                title: {
-                    text: chartTitles[i]
-                },
-                data: [{
-                        type: "line",
-                        dataPoints: new Array()
-                    }]
-            })
-        );
+                new CanvasJS.Chart(chartIds[i], {
+            title: {
+                text: chartTitles[i]
+            },
+            data: [{
+                    type: "line",
+                    dataPoints: new Array()
+                }]
+        })
+                );
     }
 }
 
@@ -138,8 +138,8 @@ var dataLength = 20; // number of dataPoints visible at any point
 function updateCharts(data) {
 
     var hour = data.hora;
-    var variables_data = [data.humedad, data.humedad_suelo, data.radiacion, data.intensidad_luz, data.temperatura ];
-    
+    var variables_data = [data.humedad, data.humedad_suelo, data.radiacion, data.intensidad_luz, data.temperatura];
+
     for (var i = 0; i < chartsArrayLength; i++) {
         var dps = chartsArray[i].options.data[0].dataPoints;
 
@@ -158,17 +158,22 @@ function updateCharts(data) {
     counter++;
 }
 
-var webSocket = new WebSocket("ws://" + document.location.host + document.location.pathname + "datasocket");
+/**
+ * Comment
+ */
+function connect() {
+    var webSocket = new WebSocket("ws://" + document.location.host + document.location.pathname + "datasocket");
 
-webSocket.onerror = function(event) {
-    onError(event);
-};
-webSocket.onopen = function(event) {
-    onOpen(event);
-};
-webSocket.onmessage = function(event) {
-    onMessage(event);
-};
+    webSocket.onerror = function(event) {
+        onError(event);
+    };
+    webSocket.onopen = function(event) {
+        onOpen(event);
+    };
+    webSocket.onmessage = function(event) {
+        onMessage(event);
+    };
+}
 
 function onMessage(event) {
     var data = eval("(" + event.data + ")");

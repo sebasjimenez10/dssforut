@@ -30,6 +30,7 @@ public class DataWebSocket {
     public void onOpen(Session session){
     
         sessions.add(session);
+        this.sendStoredData();
         System.out.println("Session added: " + session.getId());
     }
     
@@ -53,6 +54,15 @@ public class DataWebSocket {
             } catch (IOException ex) {
                 Logger.getLogger(WebSocketTester.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+    }
+
+    private void sendStoredData() {
+        DataHolder dh = new DataHolder();
+        String[] memoryData = dh.getMemoryData();
+        
+        for (String string : memoryData) {
+            this.broadcastMessage(string);
         }
     }
 }
