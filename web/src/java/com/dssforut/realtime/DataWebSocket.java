@@ -30,7 +30,7 @@ public class DataWebSocket {
     public void onOpen(Session session){
     
         sessions.add(session);
-        this.sendStoredData();
+        this.sendStoredData(session);
         System.out.println("Session added: " + session.getId());
     }
     
@@ -57,12 +57,18 @@ public class DataWebSocket {
         }
     }
 
-    private void sendStoredData() {
+    private void sendStoredData(Session session) {
         DataHolder dh = new DataHolder();
         String[] memoryData = dh.getMemoryData();
         
         for (String string : memoryData) {
-            this.broadcastMessage(string);
+            try {
+                session.getBasicRemote().sendText(string);
+            } catch (IOException ex) {
+                Logger.getLogger(DataWebSocket.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        
+        System.out.println(memoryData.length + " data sent");
     }
 }

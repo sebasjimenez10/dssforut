@@ -4,6 +4,8 @@
  */
 package com.dssforut.realtime;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 
 /**
@@ -27,6 +29,7 @@ public class DataHolder {
 
     public String[] getMemoryData() {
         String[] dataSet = memory.toArray(new String[0]);
+        Collections.reverse(Arrays.asList(dataSet));
         return dataSet;
     }
 }
