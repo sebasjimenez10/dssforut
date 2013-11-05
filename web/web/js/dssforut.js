@@ -1,7 +1,6 @@
 
 //HOST
-var host;
-loadConfigFile("javascript_config.json");
+var host = "http://" + document.location.host + document.location.pathname + "resources/";
 
 //SERVICES
 var service = "history?";
@@ -30,7 +29,7 @@ function getHistorico() {
     var params = "min=" + mindate.value + "&max=" + maxdate.value
             + "&variable=" + variable;
 
-    var url = host.host + service + params;
+    var url = host + service + params;
     serverGet(url);
 
     spin("historico");
@@ -78,17 +77,6 @@ function serverGet(url) {
 }
 
 /**
- * This function loads the config file
- * @param {type} url
- * @returns {undefined}
- */
-function loadConfigFile(url) {
-    $.get(url, function(data) {
-        host = eval("(" + data + ")");
-    });
-}
-
-/**
  * Spin.js
  */
 var spinner;
@@ -118,40 +106,56 @@ function spin(element) {
 /**
  * Load Charts
  */
-var chart;
-var dps;
+var chartsArray = [];
+var chartsArrayLength = 5;
+
 function loadCharts() {
 
-    dps = []; // dataPoints
+    var chartIds = ["humedadChart", "humedadSueloChart", "radiacionChart", "luzChart", "tempChart"];
+    var chartTitles = ["Humedad", "Humedad del Suelo", "Radiacion", "Intensidad de la Luz", "Temperatura"];
 
-    chart = new CanvasJS.Chart("humedadChart", {
-        title: {
-            text: "Humedad Data"
-        },
-        data: [{
-                type: "line",
-                dataPoints: dps
-            }]
-    });
+    for (var i = 0; i < chartsArrayLength; i++) {
+        chartsArray.push(
+            new CanvasJS.Chart(chartIds[i], {
+                title: {
+                    text: chartTitles[i]
+                },
+                data: [{
+                        type: "line",
+                        dataPoints: new Array()
+                    }]
+            })
+        );
+    }
 }
 
-var a = 1;
-function updateChart(xVal, yVal) {
+/**
+ * 
+ * updateChart function is called when a new sensor data package is received
+ */
+var counter = 1;
+var dataLength = 20; // number of dataPoints visible at any point
+function updateCharts(data) {
 
-    var dataLength = 20; // number of dataPoints visible at any point
+    var hour = data.hora;
+    var variables_data = [data.humedad, data.humedad_suelo, data.radiacion, data.intensidad_luz, data.temperatura ];
+    
+    for (var i = 0; i < chartsArrayLength; i++) {
+        var dps = chartsArray[i].options.data[0].dataPoints;
 
-    if (dps.length > dataLength)
-    {
-        dps.shift();
+        if (dps.length >= dataLength) {
+            dps.shift();
+        }
+
+        dps.push({
+            label: hour,
+            x: counter,
+            y: Number(variables_data[i])
+        });
+
+        chartsArray[i].render();
     }
-
-    dps.push({
-        label: xVal,
-        x: a++,
-        y: Number(yVal)
-    });
-
-    chart.render();
+    counter++;
 }
 
 var webSocket = new WebSocket("ws://" + document.location.host + document.location.pathname + "datasocket");
@@ -168,8 +172,7 @@ webSocket.onmessage = function(event) {
 
 function onMessage(event) {
     var data = eval("(" + event.data + ")");
-
-    updateChart(data.hora, data.humedad);
+    updateCharts(data);
 }
 function onOpen(event) {
 
