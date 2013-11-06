@@ -10,5 +10,5 @@ package com.dssforut.util;
  * @author Sebastian
  */
 public enum EnvInfoEnum {
-    real_env, disconnected_env_frecuency, usb_com_port;
+    real_env, disconnected_env_frecuency, usb_com_port, host;
 }

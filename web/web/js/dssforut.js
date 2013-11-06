@@ -38,6 +38,17 @@ function getHistorico() {
 }
 
 /**
+ * Function to get server resources
+ * @param {type} url
+ * @returns {undefined}
+ */
+function serverGet(url) {
+    $.get(url, function(data) {
+        onHistoryResponse(data);
+    });
+}
+
+/**
  * This function is called when getHistory services sends a response
  * @param {type} response
  * @returns {undefined}
@@ -65,16 +76,6 @@ function onHistoryResponse(response) {
     consultarBtn.disabled = false;
 }
 
-/**
- * Function to get server resources
- * @param {type} url
- * @returns {undefined}
- */
-function serverGet(url) {
-    $.get(url, function(data) {
-        onHistoryResponse(data);
-    });
-}
 
 /**
  * Spin.js
@@ -149,17 +150,17 @@ function setSensorXChart() {
         data: [{
                 name: "Nodo1",
                 showInLegend: true,
-                type: "spline",
+                type: "line",
                 dataPoints: new Array()
             },
             {
-                type: "spline",
+                type: "line",
                 dataPoints: new Array(),
                 name: "Nodo2",
                 showInLegend: true
             },
             {
-                type: "spline",
+                type: "line",
                 dataPoints: new Array(),
                 name: "Nodo3",
                 showInLegend: true
