@@ -1,5 +1,11 @@
 package com.dssforut.main;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import org.apache.log4j.PropertyConfigurator;
+
 import com.dssforut.sensormanager.ConnectedSensorReader;
 import com.dssforut.sensormanager.DisconnectedSensorReader;
 import com.dssforut.sensormanager.SensorReader;
@@ -21,6 +27,9 @@ public class Main {
      */
     public static void main(String[] args) {
 
+    	//Logger settings
+    	PropertyConfigurator.configure("dssforutlog.properties");
+    	
         //Data observer
         SensorReaderObserver sro = new SensorReaderObserver();
         //Data reader
@@ -46,5 +55,24 @@ public class Main {
         
         //Sensor thread starts reading. This space can be used for forward
         //activities in the process
+        
+        //Console option to close program
+        System.out.println("There are three logs: jooq.log, dssforut.log and Xbee.log, they are created under /bin folder");
+        System.out.println("Enter \"1\" to stop the application");
+        try{
+        	String s = "";
+        	while(!s.equals("1")){
+        	
+	        	BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
+	    	    s = bufferRead.readLine();
+	    	    System.out.println("You entered: " + s);
+        	}
+        	System.out.println("Closing program, bye");
+    	    
+    	}
+    	catch(IOException e)
+    	{
+    		e.printStackTrace();
+    	}
     }
 }

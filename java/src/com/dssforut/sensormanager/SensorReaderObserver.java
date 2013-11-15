@@ -1,5 +1,6 @@
 package com.dssforut.sensormanager;
 
+import com.dssforut.main.LogAppender;
 import com.dssforut.sensormanager.sensordata.SensorObtainedData;
 import com.dssforut.sensormanager.sensordata.SensorDataManager;
 import com.dssforut.util.ServiceCaller;
@@ -32,7 +33,7 @@ public class SensorReaderObserver implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         //Printing out what came
-        System.out.println("Received obj from event: " + arg.toString());
+    	LogAppender.logDebugMessage("Received obj from event: " + arg.toString());
         
         //Casting the received data to SensorObtainedData which contains the
         //full structure of the sensor data

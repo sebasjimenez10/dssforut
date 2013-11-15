@@ -6,6 +6,8 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.dssforut.main.LogAppender;
+
 /**
  *
  * @author Sebastian
@@ -45,6 +47,7 @@ public class PropsReader {
         } catch (IOException ex) {            
             Logger.getLogger(PropsReader.class.getName()).log(Level.SEVERE,
                     "It was not possible to load: \"" + file + "\" file.", ex);
+            LogAppender.logDebugMessage("It was not possible to load: \"" + file + "\" file.");
         }
         
         return props;

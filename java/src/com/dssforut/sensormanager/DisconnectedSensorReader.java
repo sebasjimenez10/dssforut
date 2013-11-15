@@ -1,5 +1,6 @@
 package com.dssforut.sensormanager;
 
+import com.dssforut.main.LogAppender;
 import com.dssforut.sensormanager.sensordata.SensorObtainedData;
 import com.dssforut.util.EnvInfoEnum;
 import com.dssforut.util.PropsReader;
@@ -63,7 +64,7 @@ public class DisconnectedSensorReader extends SensorReader{
             //Current time
             Date time = new Date();
             //Printing data and node
-            System.out.println("\"Received data\" from:: " + data);
+            LogAppender.logDebugMessage("\"Received data\" from:: " + data);
             //Packing data into object
             SensorObtainedData sd = new SensorObtainedData(data, time);
             //Setting state of the observable object
@@ -81,12 +82,12 @@ public class DisconnectedSensorReader extends SensorReader{
      */
     private void sleepThread(int millis) {
         try {
-        	System.out.println("Sleeping thread");
+        	LogAppender.logDebugMessage("Sleeping thread");
             Thread.sleep(millis);
         } catch (InterruptedException ex) {
             Logger.getLogger(DisconnectedSensorReader.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Waking up thread");
+        LogAppender.logDebugMessage("Waking up thread");
     }
     
 }

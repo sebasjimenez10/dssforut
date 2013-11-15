@@ -4,6 +4,7 @@
  */
 package com.dssforut.sensormanager;
 
+import com.dssforut.main.LogAppender;
 import com.dssforut.sensormanager.sensordata.SensorObtainedData;
 import com.dssforut.util.EnvInfoEnum;
 import com.dssforut.util.PropsReader;
@@ -83,7 +84,7 @@ public class ConnectedSensorReader extends SensorReader implements PacketListene
             ZNetRxResponse znetResponse = (ZNetRxResponse) response;
 
             String data = ByteUtils.toString(znetResponse.getData());
-            System.out.println("Received Data from Sensor: " + data);
+            LogAppender.logDebugMessage("Received Data from Sensor: " + data);
 
             SensorObtainedData sod = new SensorObtainedData(data, new Date());
             

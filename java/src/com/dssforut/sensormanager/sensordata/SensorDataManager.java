@@ -6,6 +6,7 @@ package com.dssforut.sensormanager.sensordata;
 
 
 
+import com.dssforut.main.LogAppender;
 import com.dssforut.util.DatabaseInfoEnum;
 import com.dssforut.util.PropsReader;
 import static com.dssforut.sensormanager.sensordata.Tables.*;
@@ -37,24 +38,29 @@ public class SensorDataManager {
     //Separator used in the packet
     private static final String separator = "/";
     
+    private Connection conn;
+    
+    public SensorDataManager() {
+		conn = null;
+	}
+    
     /*
      * This method sends what was received from sensor to data base.
      */
     public void sendFullPacketToDb( SensorObtainedData data ) {
         
-        Connection conn = getConnection();
+        getConnection();
 
         String separatedData [] = data.getFrame().split( separator );
         pushDataPacket(conn, separatedData, data.getTime(), separatedData[separatedData.length - 1]);
 
-        closeConnection(conn);
+        //closeConnection(conn);
     }
 
     /*
      * This method gets a connection to the configured database in config files.
      */
-    private Connection getConnection() {
-        Connection conn = null;
+    private void getConnection() {
 
         PropsReader propsReader = new PropsReader();
         
@@ -68,27 +74,14 @@ public class SensorDataManager {
         try {
             
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conn = (Connection) DriverManager.getConnection(url, userName, password);
+            if(conn == null){
+            	conn = (Connection) DriverManager.getConnection(url, userName, password);
+            	LogAppender.logDebugMessage( "Connected to: " + url );
+            }
             
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
             Logger.getLogger(SensorDataManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return conn;
-    }
-
-    /*
-     * Closing connection after using it.
-     */
-    private void closeConnection(Connection conn) {
-
-        if (conn != null) {
-            try {
-                conn.close();
-                System.out.println("Connection closed");
-            } catch (SQLException ignore) {
-                Logger.getLogger(SensorDataManager.class.getName()).log(Level.SEVERE, null, ignore);
-            }
+            LogAppender.logDebugMessage("Error getting db connection");
         }
     }
 
@@ -111,5 +104,20 @@ public class SensorDataManager {
                 .set(SENSOR_DATA_REGISTRY.NODO, node)
                 .execute();
         }
+    }
+    
+    private void closeConnection(){
+    	 try {
+             conn.close();
+             LogAppender.logDebugMessage("Connection closed");
+         } catch (SQLException ignore) {
+             Logger.getLogger(SensorDataManager.class.getName()).log(Level.SEVERE, null, ignore);
+         }
+    }
+    
+    @Override
+    protected void finalize() throws Throwable {
+    	this.closeConnection();
+    	super.finalize();
     }
 }
