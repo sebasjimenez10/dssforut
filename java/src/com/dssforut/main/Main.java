@@ -68,6 +68,7 @@ public class Main {
 	    	    System.out.println("You entered: " + s);
         	}
         	System.out.println("Closing program, bye");
+        	System.exit(0);
     	    
     	}
     	catch(IOException e)
